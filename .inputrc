@@ -1,0 +1,34 @@
+"\em": accept-line
+"\ew": backward-kill-word
+"\ea": beginning-of-line
+"\ee": end-of-line
+"\e.": kill-whole-line
+"\el": clear-screen
+"\ej": backward-delete-char
+"\ep": previous-history
+"\en": next-history
+"\ec": backward-word
+"\ek": kill-line
+"\er": history-search-backward
+"\es": history-search-forward
+"\e<": beginning-of-history
+"\e>": end-of-history
+"\ei": backward-char
+"\e,": forward-char
+"\eu": undo
+"\eo": complete
+"\e-": menu-complete-backward
+"\e%": "~/"
+"\e*": menu-complete-backward
+"\e[24~": abort
+"\ex": delete-char
+"\e&": "\C-e > /dev/null 2>&1 &"
+"\e)": "\C-a(\C-e)"
+"\e/1": "../"
+"\e/2": "../../"
+"\e/3": "../../../"
+"\e/4": "../../../../"
+"\e/5": "../../../../../"
+
+set completion-ignore-case on
+set bell-style none
