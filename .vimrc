@@ -13,7 +13,6 @@ nnoremap * :keepjumps normal! mi*`i<CR>
 nnoremap <f1> :bp<CR>
 nnoremap <f2> :bn<CR>
 nnoremap <f11> :ToggleBufExplorer<CR>
-nnoremap <f10> :E<CR>
 execute "set <M-v>=\ev"
 execute "set <M-d>=\ed"
 execute "set <M-a>=\ea"
@@ -31,6 +30,8 @@ execute "set <M-o>=\eo"
 execute "set <M-i>=\ei"
 execute "set <M-,>=\e,"
 execute "set <M-n>=\en"
+execute "set <M-e>=\ee"
+nnoremap <M-e> :E<CR>
 nnoremap <M-v> <C-w>v
 nnoremap <M-c> <C-w>s
 nnoremap <M-x> <C-w>c
