@@ -1,7 +1,7 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 syntax enable
-colors apprentice
+"colors apprentice
 set shiftwidth=2
 set guioptions-=m
 set guicursor+=a:blinkon0

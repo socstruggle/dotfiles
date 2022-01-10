@@ -4,8 +4,8 @@
 Name=Simple Terminal
 GenericName=Terminal
 Comment=Suckless terminal emulator for X
-#Exec=st -t "Simple Terminal" -f "Source Code Pro:style=Semibold:size=12"
-Exec=st -t "Simple Terminal"
+Exec=st -t "Simple Terminal" -f "Monospace:style=:size=12"
+#Exec=st -t "Simple Terminal"
 Terminal=false
 Type=Application
 Encoding=UTF-8
