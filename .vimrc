@@ -5,6 +5,7 @@ syntax enable
 set shiftwidth=2
 set guioptions-=m
 set guicursor+=a:blinkon0
+set autochdir
 set laststatus=2
 set statusline=%F
 set hlsearch
