@@ -3,6 +3,8 @@ source $VIMRUNTIME/defaults.vim
 syntax enable
 "colors apprentice
 set shiftwidth=2
+set tabstop=2
+set expandtab
 set guioptions-=m
 set guicursor+=a:blinkon0
 set autochdir
@@ -50,3 +52,24 @@ nnoremap f <C-f>
 nnoremap F <C-u>
 nmap t% :tabe %<CR>
 nmap td :tabc<CR>
+
+":function Myfunc()
+":if winnr('$')>1
+":tab split
+":else
+":tab close
+":endif
+":endfunction
+
+":function MyBufferSplit()
+":if exists("b:bsplit")
+":unlet b:bsplit
+":tab close
+":else
+":let b:bsplit = 1
+":tab split
+":endif
+":endfunction
+
+"nnoremap <M-o> :call MyBufferSplit()<CR>
+"nnoremap <M-o> :tab split<CR>
