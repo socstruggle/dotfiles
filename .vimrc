@@ -9,7 +9,8 @@ set guioptions-=m
 set guicursor+=a:blinkon0
 set autochdir
 set laststatus=2
-set statusline=%F
+"set statusline=%F
+"set statusline+=%{zoom#statusline()}
 set hlsearch
 set formatoptions-=cro
 nnoremap * :keepjumps normal! mi*`i<CR>
@@ -44,14 +45,18 @@ nnoremap <M-w> <C-w>k
 nnoremap <M-s> <C-w>j
 nnoremap <M-a> <C-w>h
 nnoremap <M-d> <C-w>l
-nnoremap <M-o> <C-w>o
+nmap <M-o> <C-w>o
 nnoremap <M-n> :tabe<CR>
 nnoremap <M-i> :tabp<CR>
 nnoremap <M-,> :tabn<CR>
 nnoremap f <C-f>
 nnoremap F <C-u>
-nmap t% :tabe %<CR>
-nmap td :tabc<CR>
+nmap tt :tabe %<CR>
+nmap tx :tabc<CR>
+
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
 
 ":function Myfunc()
 ":if winnr('$')>1
