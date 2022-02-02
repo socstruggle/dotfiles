@@ -1,7 +1,8 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 syntax enable
-colors apprentice
+set background=dark
+colorscheme scheakur
 set shiftwidth=2
 set tabstop=2
 set expandtab
@@ -10,7 +11,6 @@ set guicursor+=a:blinkon0
 set autochdir
 set laststatus=2
 "set statusline=%F
-"set statusline+=%{zoom#statusline()}
 set hlsearch
 set formatoptions-=cro
 nnoremap * :keepjumps normal! mi*`i<CR>
@@ -57,24 +57,3 @@ nmap tx :tabc<CR>
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-
-":function Myfunc()
-":if winnr('$')>1
-":tab split
-":else
-":tab close
-":endif
-":endfunction
-
-":function MyBufferSplit()
-":if exists("b:bsplit")
-":unlet b:bsplit
-":tab close
-":else
-":let b:bsplit = 1
-":tab split
-":endif
-":endfunction
-
-"nnoremap <M-o> :call MyBufferSplit()<CR>
-"nnoremap <M-o> :tab split<CR>

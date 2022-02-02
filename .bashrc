@@ -166,3 +166,7 @@ function colorgrid( )
 # https://support.xilinx.com/s/article/69355?language=en_US
 # LIBRARY_PATH is needed for Vitis HLS
 export "LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
