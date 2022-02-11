@@ -122,7 +122,8 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
-alias ydl=youtube-dl
+alias ydl=~/ydl
+alias ydlp=~/ydlp
 alias md=mkdir
 
 parse_git_branch() {
@@ -168,5 +169,8 @@ function colorgrid( )
 export "LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
 
 # BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+#if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+export "PATH=/opt/ActiveTcl-8.6/bin:$PATH"
+export "PATH=/opt/ActiveTcl-8.6/man:$PATH"
