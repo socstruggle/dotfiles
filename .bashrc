@@ -125,11 +125,19 @@ alias .5='cd ../../../../..'
 alias ydl=~/ydl
 alias ydlp=~/ydlp
 alias md=mkdir
+alias tclsh='rlwrap tclsh'
+alias tksh='rlwrap wish'
+alias btmagnet='aria2c --bt-metadata-only --bt-save-metadata'
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;208m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;38;5;223m\]$(parse_git_branch)\n> \[\033[01;38;5;249m\]'
+
+#function btmagnet()
+#{
+#  aria2c --bt-metadata-only --bt-save-metadata "$@"
+#}
 
 function colorgrid( )
 {
@@ -172,5 +180,5 @@ export "LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
 #if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-export "PATH=/opt/ActiveTcl-8.6/bin:$PATH"
-export "PATH=/opt/ActiveTcl-8.6/man:$PATH"
+#export "PATH=/opt/ActiveTcl-8.6/bin:$PATH"
+#export "PATH=/opt/ActiveTcl-8.6/man:$PATH"
