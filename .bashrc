@@ -128,6 +128,8 @@ alias md=mkdir
 alias tclsh='rlwrap tclsh'
 alias tksh='rlwrap wish'
 alias btmagnet='aria2c --bt-metadata-only --bt-save-metadata'
+alias mpvm='mpv --mute'
+alias bcat=batcat
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -182,3 +184,22 @@ export "LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
 
 #export "PATH=/opt/ActiveTcl-8.6/bin:$PATH"
 #export "PATH=/opt/ActiveTcl-8.6/man:$PATH"
+
+bind -r '\e0'
+bind -r '\e1'
+bind -r '\e2'
+bind -r '\e3'
+bind -r '\e4'
+bind -r '\e5'
+bind -r '\e6'
+bind -r '\e7'
+bind -r '\e8'
+bind -r '\e9'
+
+PATH="$HOME/.cargo/bin:$PATH"
+
+PATH="/home/ckayhan/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/ckayhan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/ckayhan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/ckayhan/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/ckayhan/perl5"; export PERL_MM_OPT;
