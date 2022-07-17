@@ -1,0 +1,3 @@
+load("physical_constants");
+rangeToTarget(t,unit):=block(sec: t ` unit `` second,constvalue(%c)*sec/2);
+timeToTarget(range,unit):=block(met: range ` unit `` meter, met/constvalue(%c));
