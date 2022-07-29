@@ -1,6 +1,8 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
-syntax enable
+
+"syntax enable
+syntax on
 set background=dark
 colorscheme scheakur
 set shiftwidth=2
@@ -13,10 +15,10 @@ set laststatus=2
 "set statusline=%F
 set hlsearch
 set formatoptions-=cro
-nnoremap * :keepjumps normal! mi*`i<CR>
-nnoremap <f1> :bp<CR>
-nnoremap <f2> :bn<CR>
-nnoremap <f11> :ToggleBufExplorer<CR>
+set ignorecase
+set foldmethod=syntax
+set nowrap
+
 execute "set <M-v>=\ev"
 execute "set <M-d>=\ed"
 execute "set <M-a>=\ea"
@@ -35,6 +37,8 @@ execute "set <M-i>=\ei"
 execute "set <M-,>=\e,"
 execute "set <M-n>=\en"
 execute "set <M-e>=\ee"
+
+nnoremap * :keepjumps normal! mi*`i<CR>
 nnoremap <M-e> :E<CR>
 nnoremap <M-v> <C-w>v
 nnoremap <M-c> <C-w>s
@@ -52,9 +56,7 @@ nnoremap <M-,> :tabn<CR>
 nnoremap f <C-f>
 nnoremap F <C-u>
 nmap tt :tabe %<CR>
+nmap tr :tabp<CR>
+nmap ty :tabn<CR>
 nmap tx :tabc<CR>
-
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-set ignorecase
+nnoremap <Space> za
