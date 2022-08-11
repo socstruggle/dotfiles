@@ -18,6 +18,8 @@
 "\e,": forward-char
 "\eu": undo
 "\eo": complete
+"\e-": menu-complete
+#"\e-": menu-complete
 #"\e-": menu-complete-backward
 #"\e%": "~/"
 #"\e*": menu-complete-backward
@@ -34,3 +36,4 @@
 
 set completion-ignore-case on
 set bell-style none
+set menu-complete-display-prefix on
