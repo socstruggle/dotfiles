@@ -16,7 +16,7 @@ set laststatus=2
 set hlsearch
 set formatoptions-=cro
 set ignorecase
-set foldmethod=syntax
+"set foldmethod=syntax
 set nowrap
 
 execute "set <M-v>=\ev"

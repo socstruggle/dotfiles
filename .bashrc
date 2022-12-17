@@ -131,6 +131,7 @@ alias ydlp=~/ydlp
 alias md=mkdir
 alias tclsh='rlwrap tclsh'
 alias tksh='rlwrap wish'
+alias expect='rlwrap expect'
 alias btmagnet='aria2c --bt-metadata-only --bt-save-metadata'
 alias mpvm='mpv --mute'
 alias bcat=batcat
