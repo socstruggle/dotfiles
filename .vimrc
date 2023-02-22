@@ -1,5 +1,5 @@
-unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+"unlet! skip_defaults_vim
+"source $VIMRUNTIME/defaults.vim
 
 "syntax enable
 syntax on
@@ -19,24 +19,24 @@ set ignorecase
 "set foldmethod=syntax
 set nowrap
 
-execute "set <M-v>=\ev"
-execute "set <M-d>=\ed"
-execute "set <M-a>=\ea"
-execute "set <M-c>=\ec"
-execute "set <M-w>=\ew"
-execute "set <M-f>=\ef"
-execute "set <M-u>=\eu"
-execute "set <M-x>=\ex"
-execute "set <M-s>=\es"
-execute "set <M-h>=\eh"
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-execute "set <M-l>=\el"
-execute "set <M-o>=\eo"
-execute "set <M-i>=\ei"
-execute "set <M-,>=\e,"
-execute "set <M-n>=\en"
-execute "set <M-e>=\ee"
+"execute "set <M-v>=\ev"
+"execute "set <M-d>=\ed"
+"execute "set <M-a>=\ea"
+"execute "set <M-c>=\ec"
+"execute "set <M-w>=\ew"
+"execute "set <M-f>=\ef"
+"execute "set <M-u>=\eu"
+"execute "set <M-x>=\ex"
+"execute "set <M-s>=\es"
+"execute "set <M-h>=\eh"
+"execute "set <M-j>=\ej"
+"execute "set <M-k>=\ek"
+"execute "set <M-l>=\el"
+"execute "set <M-o>=\eo"
+"execute "set <M-i>=\ei"
+"execute "set <M-,>=\e,"
+"execute "set <M-n>=\en"
+"execute "set <M-e>=\ee"
 
 nnoremap * :keepjumps normal! mi*`i<CR>
 nnoremap <M-e> :E<CR>
