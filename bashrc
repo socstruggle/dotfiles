@@ -7,6 +7,8 @@ shopt -u progcomp
 HISTSIZE=
 HISTFILESIZE=
 
+usbinfo() { udevadm info --query property /dev/disk/by-uuid/$(lsblk -o NAME,UUID|grep $1|awk '{print $2}') |egrep -i "ID_VENDOR_ID=|ID_MODEL_ID="; }
+
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
