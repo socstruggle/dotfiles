@@ -1,0 +1,29 @@
+# mount vfat format usb to prevent permission denied
+sudo mount -o uid=1000,gid=1000 /dev/sdb1 /mnt/ASISGUARD2
+
+# install oracle virtualbox 6 on centos 7
+sudo yum update
+sudo yum install –y patch gcc kernel-headers kernel-devel make perl wget
+sudo reboot
+sudo wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -P /etc/yum.repos.d
+sudo yum install VirtualBox-6.0
+sudo systemctl status vboxdrv
+wget http://download.virtualbox.org/virtualbox/6.0.4/Oracle_VM_VirtualBox_Extension_Pack-6.0.4.vbox-extpack
+sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.0.4.vbox-extpack
+
+# install iwconfig on centos
+sudo yum install wireless-tools
+
+# enable wifi on centos ardadurustpc
+sudo tee /etc/modprobe.d/ideapad.conf <<< "blacklist ideapad_laptop"
+
+#
+sudo yum install network-manager-applet
+
+# how to enable exfat filesystem on centos
+sudo rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+sudo yum install exfat-utils fuse-exfat
+
+# how to learn open files of mounted drives
+sudo lsof +D /mnt/SanDisk_256GB
