@@ -27,3 +27,9 @@ sudo yum install exfat-utils fuse-exfat
 
 # how to learn open files of mounted drives
 sudo lsof +D /mnt/SanDisk_256GB
+
+# install wireshark on centos
+sudo yum install wireshark wireshark-gnome -y
+
+# add domain to firewall whitelist on centos
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
