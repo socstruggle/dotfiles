@@ -122,7 +122,9 @@ nnoremap <M-,> :tabn<CR>
 "nnoremap F <C-u>
 nmap tt :tabe %<CR>
 nmap tr :tabp<CR>
+nmap H :tabp<CR>
 nmap ty :tabn<CR>
+nmap L :tabn<CR>
 nmap tx :tabc<CR>
 "nnoremap <Space> za
 
