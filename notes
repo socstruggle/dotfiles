@@ -34,3 +34,13 @@ sudo yum install wireshark wireshark-gnome -y
 # add domain to firewall whitelist on centos
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
 sudo firewall-cmd --reload
+
+# how to compile opencv4 on centos
+mkdir opencv4_build && cd opencv4_build
+git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv_contrib.git
+cd opencv && mkdir build && cd build
+git checkout 4.1.1
+cmake3 -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_V4L=ON -DBUILD_TESTS=OFF -DBUILD_ZLIB=ON -DBUILD_JPEG=ON -DWITH_JPEG=ON -DWITH_PNG=ON -DBUILD_EXAMPLES=OFF -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF -DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF -DWITH_EIGEN=OFF -DCMAKE_CXX_COMPILER=/home/xilinx/Vivado/2018.3/tps/lnx64/gcc-6.2.0/bin/g++ ..
+make -j32
+sudo make install
