@@ -33,3 +33,4 @@ sudo yum install wireshark wireshark-gnome -y
 
 # add domain to firewall whitelist on centos
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
+sudo firewall-cmd --reload
