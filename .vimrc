@@ -135,8 +135,20 @@ nnoremap fj <C-w>j
 nnoremap fx <C-w>c
 nnoremap fs <C-w>s
 nnoremap fv <C-w>v
-nnoremap fo <C-w>o
+nmap fo <C-w>o
 "nnoremap ff <C-f>
 "nnoremap fu <C-u>
 
 nnoremap gf <C-g>
+
+if &diff
+  set noro
+endif
+
+function! Samew()
+  call feedkeys("\<c-w>=")
+endfunction
+
+command! Samew call Samew()
+
+set noswapfile

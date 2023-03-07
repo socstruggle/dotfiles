@@ -50,3 +50,7 @@ program_flash -target_name jsn-JTAG-HS2-210249A73CF5-4ba00477-0 -f BOOT.bin -fsb
 
 # how to set hostname permanently
 sudo hostnamectl set-hostname ardadurustpc
+
+# how to config git diff tool
+git config --global diff.tool gvimdiff
+git config --global --add difftool.prompt false
