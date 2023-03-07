@@ -1,6 +1,6 @@
 alias 'l=ls -ltr --color=auto'
 alias 'vivado=faketime -f "-5y" vivado'
-#alias 'vivado_hls=faketime -f "-5y" vivado_hls'
+alias 'vivado_hls=faketime -f "-5y" vivado_hls'
 alias '.1=cd ..'
 alias '.2=cd ../..'
 alias '.3=cd ../../..'
