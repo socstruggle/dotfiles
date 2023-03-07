@@ -151,4 +151,10 @@ endfunction
 
 command! Samew call Samew()
 
+function! Fullp()
+  call feedkeys("1\<c-g>")
+endfunction
+
+command! Fullp call Fullp()
+
 set noswapfile
