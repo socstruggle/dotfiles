@@ -44,3 +44,9 @@ git checkout 4.1.1
 cmake3 -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_V4L=ON -DBUILD_TESTS=OFF -DBUILD_ZLIB=ON -DBUILD_JPEG=ON -DWITH_JPEG=ON -DWITH_PNG=ON -DBUILD_EXAMPLES=OFF -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF -DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF -DWITH_EIGEN=OFF -DCMAKE_CXX_COMPILER=/home/xilinx/Vivado/2018.3/tps/lnx64/gcc-6.2.0/bin/g++ ..
 make -j32
 sudo make install
+
+# how to program myir7015 qspi flash
+program_flash -target_name jsn-JTAG-HS2-210249A73CF5-4ba00477-0 -f BOOT.bin -fsbl fsbl.elf -flash_type qspi-x4-single -blank_check -verify -url TCP:localhost:3121 -offset 0
+
+# how to set hostname permanently
+sudo hostnamectl set-hostname ardadurustpc

@@ -56,6 +56,8 @@ function colorgrid( )
     done
 }
 
+export PATH=$PATH:/home/ckayhan/feh/src
+
 # https://support.xilinx.com/s/article/69355?language=en_US
 # LIBRARY_PATH is needed for Vitis HLS
 #export "LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
