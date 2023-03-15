@@ -54,3 +54,69 @@ sudo hostnamectl set-hostname ardadurustpc
 # how to config git diff tool
 git config --global diff.tool gvimdiff
 git config --global --add difftool.prompt false
+
+# how to change boot mode to JTAG from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x0100
+rst -system
+
+# how to change boot mode to QUAD-SPI(24b) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x1100 
+rst -system
+
+# how to change boot mode to QUAD-SPI(32b) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x2100 
+rst -system
+
+# how to change boot mode to SD0(2.0) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x3100 
+rst -system
+
+# how to change boot mode to NAND from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x4100 
+rst -system
+
+# how to change boot mode to SD1(2.0) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x5100 
+rst -system
+
+# how to change boot mode to eMMC(1.8V) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x6100 
+rst -system
+
+# how to change boot mode to USB(2.0) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x7100 
+rst -system
+
+# how to change boot mode to PJTAG(MIO#0) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x8100 
+rst -system
+
+# how to change boot mode to PJTAG(MIO#1) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0x9100 
+rst -system
+
+# how to change boot mode to SD1(3.0) from xsct console
+targets -set -nocase -filter {name =~ "*PSU*"}
+stop
+mwr  0xff5e0200 0xe100 
+rst -system
