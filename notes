@@ -120,3 +120,6 @@ targets -set -nocase -filter {name =~ "*PSU*"}
 stop
 mwr  0xff5e0200 0xe100 
 rst -system
+
+# how to change ARTF UART to PS UART1 on petalinux
+petalinux-config -> ARM Trusted Firmware Compilation Configuration -> extra ATF compilation settings -> ZYNQMP_CONSOLE=cadence1
