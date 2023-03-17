@@ -145,6 +145,30 @@ if &diff
   set noro
 endif
 
+function! Get()
+  :silent execute (":r!tclsh /putget/get.tcl")
+endfunction
+
+command! Get call Get()
+
+function! Putl()
+  :silent execute (":.:w !tclsh /putget/put.tcl")
+endfunction
+
+command! Putl call Putl()
+
+function! Putb()
+  :silent execute (":%:w !tclsh /putget/put.tcl")
+endfunction
+
+command! Putb call Putb()
+
+function! Putv()
+  :silent execuke (":'<,'>:w !tclsh /putget/put.tcl")
+endfunction
+
+command! Putv call Putv()
+
 function! Samew()
   call feedkeys("\<c-w>=")
 endfunction
