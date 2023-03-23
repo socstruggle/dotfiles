@@ -15,3 +15,5 @@ alias 'peta-package=petalinux-package --boot --fsbl --u-boot --fpga images/linux
 alias 'peta-package-r5=petalinux-package --boot --fsbl --u-boot --fpga images/linux/system.bit --add ./r5.elf --cpu=r5-0 --pmufw --force'
 alias 'peta-boot=petalinux-boot --jtag --u-boot --fpga --bitstream images/linux/system.bit -v'
 alias 'peta-build=petalinux-build'
+alias 'peta-md5sum=md5sum /var/lib/tftpboot/{BOOT.BIN,image.ub} images/linux/{BOOT.BIN,image.ub}'
+alias 'peta-cfg-fs=petalinux-config -c rootfs'

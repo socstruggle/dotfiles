@@ -14,7 +14,8 @@ parse_git_branch() {
 }
 intfname () 
 { 
-    find /sys/class/net ! -type d | xargs --max-args=1 realpath | awk -v pciid=$(lspci|awk '/Ethernet/{print $1}') -F\/ '{if($0 ~ pciid){print $NF}}'
+    #find /sys/class/net ! -type d | xargs --max-args=1 realpath | awk -v pciid=$(lspci|awk '/Ethernet/{print $1}') -F\/ '{if($0 ~ pciid){print $NF}}'
+    ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
 }
 ip_addr(){
   ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
