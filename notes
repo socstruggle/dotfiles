@@ -123,3 +123,7 @@ rst -system
 
 # how to change ARTF UART to PS UART1 on petalinux
 petalinux-config -> ARM Trusted Firmware Compilation Configuration -> extra ATF compilation settings -> ZYNQMP_CONSOLE=cadence1
+
+# how to format sd card
+sudo mkfs.vfat -F 32 -n BOOT /dev/sdc1
+sudo mkfs.ext4 -L ROOT /dev/sdc2
