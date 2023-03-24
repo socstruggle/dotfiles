@@ -127,3 +127,11 @@ petalinux-config -> ARM Trusted Firmware Compilation Configuration -> extra ATF 
 # how to format sd card
 sudo mkfs.vfat -F 32 -n BOOT /dev/sdc1
 sudo mkfs.ext4 -L ROOT /dev/sdc2
+
+# add static ip and route to dev
+sudo ip a add 10.233.1.62/24 dev enp7s0
+sudo ip r add 10.233.1.0/24 via 10.233.1.1 dev enp7s0
+
+# how to add gstreamer avdec_h256 on centos 7
+sudo yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm -y
+sudo yum install http://download1.rpmfusion.org/free/el/updates/7/x86_64/g/gstreamer1-libav-1.10.4-2.el7.x86_64.rpm -y
