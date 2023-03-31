@@ -68,7 +68,7 @@ let &guicursor = &guicursor . ",a:blinkon0"
 "syntax enable
 syntax on
 set background=dark
-colorscheme scheakur
+"colorscheme scheakur
 set shiftwidth=2
 set tabstop=2
 set expandtab
