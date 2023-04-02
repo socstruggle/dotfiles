@@ -141,3 +141,12 @@ sudo apt install -y atftpd
 sudo sed -e 's/^USE_INETD=true/USE_INETD=false/g' -i /etc/default/atftpd
 sudo systemctl enable atftpd
 sudo systemctl restart atftpd
+
+# Ubuntu/Debian xsct,Petalinux,tclsh rlwrap xterm problem
+# rlwrap: warning: your $TERM is 'xterm' but rlwrap couldn't find it in the terminfo database. Expect some problems
+sudo cp -f /lib/terminfo/x/xterm /usr/share/terminfo/x
+
+# How to install vim 8.2 on Ubuntu 16.04-4
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt update
+sudo apt upgrade
