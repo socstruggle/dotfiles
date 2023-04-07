@@ -2,6 +2,7 @@
 sudo mount -o uid=1000,gid=1000 /dev/sdb1 /mnt/ASISGUARD2
 
 # Xubuntu 16.04 first install
+sudo apt update && sudo apt upgrade && sudo apt install xfce4 xfce4-terminal firefox -y
 sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
 sudo apt install -y git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
 libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 \
@@ -17,8 +18,8 @@ sudo add-apt-repository ppa:jonathonf/vim && sudo apt update && sudo apt upgrade
 sudo add-apt-repository ppa:x2go/stable && sudo apt update && sudo apt install x2goserver x2goserver-xsession
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
-sudo mkdir -p /opt/Xilinx && sudo chown -R ckayhan:ckayhan /opt/Xilinx
-sudo mkdir -p /opt/Petalinux && sudo chown -R ckayhan:ckayhan /opt/Petalinux
+sudo mkdir -p /opt/Xilinx/Petalinux/2019.1 && sudo chown -R ckayhan:ckayhan /opt/Xilinx
+#sudo mkdir -p /opt/Petalinux && sudo chown -R ckayhan:ckayhan /opt/Petalinux
 
 # install oracle virtualbox 6 on centos 7
 sudo yum update
