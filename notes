@@ -9,6 +9,7 @@ libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpk
 autoconf make gcc build-essential automake gcc git make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev flex \
 bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo rlwrap \
 zlib1g-dev gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev build-essential zlib1g:i386 screen pax gzip
+sudo dpkg-reconfigure dash
 sudo ln -s /usr/bin/make /usr/bin/gmake
 sudo sed -e 's/^USE_INETD=true/USE_INETD=false/g' -i /etc/default/atftpd
 sudo systemctl enable atftpd
