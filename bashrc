@@ -76,6 +76,7 @@ export PATH=$PATH:/home/ckayhan/feh/src
 #bind -r '\e8'
 #bind -r '\e9'
 
-export TERM=xterm-256color
+#export TERM=xterm-256color
+export TERM=xterm
 export VISUAL=vim
 export EDITOR=vim

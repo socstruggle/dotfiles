@@ -1,17 +1,21 @@
 # mount vfat format usb to prevent permission denied
 sudo mount -o uid=1000,gid=1000 /dev/sdb1 /mnt/ASISGUARD2
 
-# Xubuntu 16.04 first install
+# Ubuntu 16.04 first install
 sudo apt update && sudo apt upgrade && sudo apt install xfce4 xfce4-terminal firefox -y
 sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
-sudo apt install -y git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
-libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 \
+sudo apt install -y wireshark python3-pip git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
+libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 tcl \
 autoconf make gcc build-essential automake gcc git make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev flex \
-bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo rlwrap \
-zlib1g-dev gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev build-essential zlib1g:i386 screen pax gzip
+bison libselinux1 gnupg file-roller wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo rlwrap httrack aria2 faketime \
+zlib1g-dev gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev build-essential zlib1g:i386 screen pax gzip vim-gtk3
 sudo dpkg-reconfigure dash
 sudo ln -s /usr/bin/make /usr/bin/gmake
 sudo sed -e 's/^USE_INETD=true/USE_INETD=false/g' -i /etc/default/atftpd
+sudo sed -e 's/\/srv\/tftp/\/var\/lib\/tftpboot/g' -i /etc/default/atftpd
+sudo mkdir -p /var/lib/tftpboot
+sudo chown -R nobody:root /var/lib/tftpboot
+sudo chmod -R 777 /var/lib/tftpboot
 sudo systemctl enable atftpd
 sudo systemctl restart atftpd
 sudo add-apt-repository ppa:jonathonf/vim && sudo apt update && sudo apt upgrade
@@ -19,38 +23,39 @@ sudo add-apt-repository ppa:jonathonf/vim && sudo apt update && sudo apt upgrade
 sudo add-apt-repository ppa:x2go/stable && sudo apt update && sudo apt install x2goserver x2goserver-xsession
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
-sudo mkdir -p /opt/Xilinx/Petalinux/2019.1 && sudo chown -R ckayhan:ckayhan /opt/Xilinx
+sudo mkdir -p /opt/Xilinx/Petalinux/2019.1 && sudo mkdir /opt/Xilinx/Petalinux/2018.3 && sudo chown -R ckayhan:ckayhan /opt/Xilinx
+sudo cp -f /lib/terminfo/x/xterm /usr/share/terminfo/x
 #sudo mkdir -p /opt/Petalinux && sudo chown -R ckayhan:ckayhan /opt/Petalinux
 
-# install oracle virtualbox 6 on centos 7
-sudo yum update
-sudo yum install –y patch gcc kernel-headers kernel-devel make perl wget
-sudo reboot
-sudo wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -P /etc/yum.repos.d
-sudo yum install VirtualBox-6.0
-sudo systemctl status vboxdrv
-wget http://download.virtualbox.org/virtualbox/6.0.4/Oracle_VM_VirtualBox_Extension_Pack-6.0.4.vbox-extpack
-sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.0.4.vbox-extpack
-
-# install iwconfig on centos
-sudo yum install wireless-tools
-
-# enable wifi on centos ardadurustpc
-sudo tee /etc/modprobe.d/ideapad.conf <<< "blacklist ideapad_laptop"
-
+## install oracle virtualbox 6 on centos 7
+#sudo yum update
+#sudo yum install –y patch gcc kernel-headers kernel-devel make perl wget
+#sudo reboot
+#sudo wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -P /etc/yum.repos.d
+#sudo yum install VirtualBox-6.0
+#sudo systemctl status vboxdrv
+#wget http://download.virtualbox.org/virtualbox/6.0.4/Oracle_VM_VirtualBox_Extension_Pack-6.0.4.vbox-extpack
+#sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.0.4.vbox-extpack
 #
-sudo yum install network-manager-applet
-
-# how to enable exfat filesystem on centos
-sudo rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
-sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
-sudo yum install exfat-utils fuse-exfat
+## install iwconfig on centos
+#sudo yum install wireless-tools
+#
+## enable wifi on centos ardadurustpc
+#sudo tee /etc/modprobe.d/ideapad.conf <<< "blacklist ideapad_laptop"
+#
+##
+#sudo yum install network-manager-applet
+#
+## how to enable exfat filesystem on centos
+#sudo rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+#sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+#sudo yum install exfat-utils fuse-exfat
 
 # how to learn open files of mounted drives
 sudo lsof +D /mnt/SanDisk_256GB
 
 # install wireshark on centos
-sudo yum install wireshark wireshark-gnome -y
+#sudo yum install wireshark wireshark-gnome -y
 
 # add domain to firewall whitelist on centos
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
