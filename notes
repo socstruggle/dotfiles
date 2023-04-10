@@ -19,7 +19,6 @@ sudo chmod -R 777 /var/lib/tftpboot
 sudo systemctl enable atftpd
 sudo systemctl restart atftpd
 sudo add-apt-repository ppa:jonathonf/vim && sudo apt update && sudo apt upgrade
-#sudo cp -f /lib/terminfo/x/xterm /usr/share/terminfo/x
 sudo add-apt-repository ppa:x2go/stable && sudo apt update && sudo apt install x2goserver x2goserver-xsession
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -164,8 +163,8 @@ sudo ip a add 10.233.1.62/24 dev enp7s0
 sudo ip r add 10.233.1.0/24 via 10.233.1.1 dev enp7s0
 
 # how to add gstreamer avdec_h256 on centos 7
-sudo yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm -y
-sudo yum install http://download1.rpmfusion.org/free/el/updates/7/x86_64/g/gstreamer1-libav-1.10.4-2.el7.x86_64.rpm -y
+#sudo yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm -y
+#sudo yum install http://download1.rpmfusion.org/free/el/updates/7/x86_64/g/gstreamer1-libav-1.10.4-2.el7.x86_64.rpm -y
 
 # how to install tftp server on Ubuntu 16.04
 sudo apt install -y atftpd
