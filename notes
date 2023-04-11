@@ -6,18 +6,19 @@ sudo apt update && sudo apt upgrade && sudo apt install xfce4 xfce4-terminal fir
 sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
 sudo apt install -y wireshark python3-pip git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
 libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 tcl \
-autoconf make gcc build-essential automake gcc git make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev flex \
-bison libselinux1 gnupg file-roller wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo rlwrap httrack aria2 faketime \
-zlib1g-dev gcc-multilib gnome-system-monitor build-essential libsdl1.2-dev libglib2.0-dev build-essential zlib1g:i386 screen pax gzip vim-gtk3
+autoconf make gcc nmap build-essential automake minicom gcc git make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev flex \
+bison libselinux1 gnupg nfs-kernel-server file-roller wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo rlwrap httrack aria2 faketime \
+zlib1g-dev gcc-multilib nfs-common portmap gnome-system-monitor build-essential libsdl1.2-dev libglib2.0-dev build-essential zlib1g:i386 screen pax gzip vim-gtk3
 sudo dpkg-reconfigure dash
 sudo ln -s /usr/bin/make /usr/bin/gmake
 sudo sed -e 's/^USE_INETD=true/USE_INETD=false/g' -i /etc/default/atftpd
 sudo sed -e 's/\/srv\/tftp/\/var\/lib\/tftpboot/g' -i /etc/default/atftpd
 sudo mkdir -p /var/lib/tftpboot
-sudo chown -R nobody:root /var/lib/tftpboot
+sudo chown -R nobody:nogroup /var/lib/tftpboot
 sudo chmod -R 777 /var/lib/tftpboot
-sudo systemctl enable atftpd
-sudo systemctl restart atftpd
+sudo systemctl enable atftpd # remote any lines starting with "tftp" from /etc/inetd.conf
+#sudo systemctl restart atftpd
+sudo reboot
 sudo add-apt-repository ppa:jonathonf/vim && sudo apt update && sudo apt upgrade
 sudo add-apt-repository ppa:x2go/stable && sudo apt update && sudo apt install x2goserver x2goserver-xsession
 git config --global user.name "Cem Kayhan"
@@ -29,6 +30,10 @@ tar xfv /mnt/sda1/VIVADO/2019.1/Xilinx_Vivado_SDK_2019.1_0524_1430.tar.gz && cd 
 ./xsetup --agree XilinxEULA,3rdPartyEULA,WebTalkTerms --batch Install --config ~/.Xilinx/install_config.txt
 cd /opt/Xilinx/Vivado/2019.1/data/xicom/cable_drivers/lin64/install_script/install_drivers && sudo ./install_drivers
 cd /opt/Xilinx/Vivado/2019.1/patches && unzip -x /mnt/sda1/VIVADO/2019.1/AR73126_vivado_2019_1_preliminary_rev1.zip -d AR73126_vivado_2019_1_preliminary_rev1
+sudo mkdir -p /mnt/nfsroot
+echo '/mnt/nfsroot 10.233.1.0/24(rw,sync,no_root_squash,no_subtree_check)' | sudo tee -a /etc/exports && sudo exportfs -a && sudo exportfs -v
+#sudo chown -R nobody:nogroup /mnt/nfsroot
+#sudo chmod -R 777 /mnts/nfsroot
 #sudo mkdir -p /opt/Petalinux && sudo chown -R ckayhan:ckayhan /opt/Petalinux
 
 ## install oracle virtualbox 6 on centos 7
