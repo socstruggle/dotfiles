@@ -2,7 +2,7 @@
 sudo mount -o uid=1000,gid=1000 /dev/sdb1 /mnt/ASISGUARD2
 
 # Ubuntu 16.04 first install
-sudo apt update && sudo apt upgrade && sudo apt install xfce4 xfce4-terminal firefox -y
+sudo apt update && sudo apt upgrade
 sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
 sudo apt install -y wireshark python3-pip git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
 libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 tcl \
