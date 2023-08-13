@@ -7,6 +7,9 @@ sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
 sudo apt install iproute2 gawk python3 python git vim tmux build-essential
 sudo apt install gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev
 sudo apt install flex bison libselinux1 gnupg wget git-core diffstat
+git config --global user.name "Cem Kayhan"
+git config --global user.email cemkayhan42@gmail.com
+
 
 #sudo apt install -y wireshark python3-pip git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
 #libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 tcl \
@@ -25,8 +28,6 @@ sudo apt install flex bison libselinux1 gnupg wget git-core diffstat
 #sudo reboot
 #sudo add-apt-repository ppa:jonathonf/vim && sudo apt update && sudo apt upgrade
 #sudo add-apt-repository ppa:x2go/stable && sudo apt update && sudo apt install x2goserver x2goserver-xsession
-#git config --global user.name "Cem Kayhan"
-#git config --global user.email cemkayhan42@gmail.com
 #sudo cp -f /lib/terminfo/x/xterm /usr/share/terminfo/x
 #sudo mkdir -p /opt/Xilinx/Petalinux/2019.1 && sudo mkdir /opt/Xilinx/Petalinux/2018.3 && sudo chown -R ckayhan:ckayhan /opt/Xilinx
 #tar xfv /mnt/sda1/VIVADO/2019.1/Xilinx_Vivado_SDK_2019.1_0524_1430.tar.gz && cd Xilinx_Vivado_SDK_2019.1_0524_1430

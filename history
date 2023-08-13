@@ -8,3 +8,18 @@ git status
 git add history
 git status
 git status -uno
+git add -u
+git commit -m "modified for Ubuntu 20.04.6"
+git config --global user.name "Cem Kayhan"
+git config --global user.email cemkayhan42@gmail.com
+git commit -m "modified for Ubuntu 20.04.6"
+git remote -v
+git branch UBUNTU-realserv
+git checkout UBUNTU-realserv
+git status -uno
+git checkout UBUNTU
+git push origin UBUNTU
+eval "$(ssh-agent -s)"
+ssh-add id_realserv
+git push origin UBUNTU
+git status -uno
