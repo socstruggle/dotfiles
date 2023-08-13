@@ -1,0 +1,10 @@
+cat history
+echo $PROMPT_COMMAND
+cat history
+ls
+cat history
+git s
+git status
+git add history
+git status
+git status -uno

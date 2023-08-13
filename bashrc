@@ -6,25 +6,30 @@ shopt -s checkwinsize
 shopt -u progcomp
 HISTSIZE=
 HISTFILESIZE=
+HISTFILE=history
+HISTCONTROL=ignoredups:erasedups
 
 usbinfo() { udevadm info --query property /dev/disk/by-uuid/$(lsblk -o NAME,UUID|grep $1|awk '{print $2}') |egrep -i "ID_VENDOR_ID=|ID_MODEL_ID="; }
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
+
 intfname () 
 { 
     #find /sys/class/net ! -type d | xargs --max-args=1 realpath | awk -v pciid=$(lspci|awk '/Ethernet/{print $1}') -F\/ '{if($0 ~ pciid){print $NF}}'
     #ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
-    ip route get 1.1.1.1 | awk '{print $5}'
+    #ip route get 1.1.1.1 | awk '{print $5}'
+    route | grep '^default' | grep -o '[^ ]*$'
     #nmcli|head -n 1|awk '{print $1}'|sed 's/.$//'
 }
-ip_addr(){
+ipaddr(){
   ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
 }
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n> '
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;208m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;38;5;223m\]$(parse_git_branch),$(ip_addr)\n> \[\033[01;38;5;249m\]'
-PROMPT_COMMAND="history -a $HISTFILE; $PROMPT_COMMAND"
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;208m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;38;5;223m\]$(parse_git_branch),$(ipaddr)\n> \[\033[01;38;5;249m\]'
+#PROMPT_COMMAND="history -a $HISTFILE; $PROMPT_COMMAND"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a $HISTFILE; history -c; history -r"
 
 function colorgrid( )
 {
