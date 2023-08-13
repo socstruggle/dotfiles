@@ -23,3 +23,27 @@ eval "$(ssh-agent -s)"
 ssh-add id_realserv
 git push origin UBUNTU
 git status -uno
+git add -u
+git commit -m "file cleanup"
+git status -uno
+crontab -e
+crontab 
+git rm --cached history
+touch historybackup
+git add historybackup
+crontab -e
+man cron
+man crontab
+crontab -e
+man crontab
+man cron
+man 1 crontab
+man 5 crontab
+man crontab
+crontab -e
+vim crontab
+crontab -e
+man crontab
+crontab crontab
+crontab -e
+cat historybackup 
