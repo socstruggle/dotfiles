@@ -6,10 +6,40 @@ sudo apt update && sudo apt upgrade
 sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
 sudo apt install iproute2 gawk python3 python git vim tmux build-essential
 sudo apt install gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev
-sudo apt install flex bison libselinux1 gnupg wget git-core diffstat
+sudo apt install flex bison libselinux1 gnupg wget git-core diffstat chrpath
+sudo apt install socat xterm autoconf libtool tar unzip texinfo gcc-multilib
+sudo apt install automake zlib1g:i386 screen pax gzip cpio python3-pip
+sudo apt install python3-pexpect xz-utils debianutils iputils-ping
+sudo apt install python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3
+sudo apt install nfs-kernel-server nfs-common libstdc++6:i386 libgtk2.0-0:i386
+sudo apt install dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386
+sudo apt install libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386
+sudo apt install weechat
+sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
 
+# Create users & groups
+sudo groupadd xilinx
+sudo adduser aalniak
+sudo adduser aberke
+sudo adduser hguler
+sudo usermod -aG xilinx ckayhan
+sudo usermod -aG xilinx aalniak
+sudo usermod -aG xilinx aberke
+sudo usermod -aG xilinx hguler
+
+# Vitis 2022.2 installation
+sudo mkdir -p /opt/Vitis
+sudo chown -R root:xilinx /opt/Vitis
+./xsetup -b ConfigGen
+./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/install_config.txt
+
+# Petalinux 2022.2 installation
+sudo chmod 755 ~/petalinux*.run
+sudo mkdir -p /opt/Petalinux/2022.2
+sudo chown -R root:xilinx /opt/Petalinux
+~/petalinux*.run -d /opt/Petalinux/2022.2
 
 #sudo apt install -y wireshark python3-pip git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
 #libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 tcl \
