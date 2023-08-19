@@ -89,3 +89,4 @@ export PATH=$PATH:/home/ckayhan/feh/src
 export TERM=xterm
 export VISUAL=vim
 export EDITOR=vim
+PATH=$PATH:/usr/sbin/
