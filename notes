@@ -1,17 +1,18 @@
 # Ubuntu 20.04.6 first install
 sudo apt update && sudo apt upgrade
-sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
-sudo apt install iproute2 gawk python3 python git vim tmux build-essential
-sudo apt install gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev
-sudo apt install flex bison libselinux1 gnupg wget git-core diffstat chrpath
-sudo apt install socat xterm autoconf libtool tar unzip texinfo gcc-multilib
-sudo apt install automake zlib1g:i386 screen pax gzip cpio python3-pip
-sudo apt install python3-pexpect xz-utils debianutils iputils-ping
-sudo apt install python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3
-sudo apt install nfs-kernel-server nfs-common libstdc++6:i386 libgtk2.0-0:i386
-sudo apt install dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386
-sudo apt install libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386
-sudo apt install weechat
+sudo dpkg --add-architecture i386
+sudo apt update && sudo apt upgrade && sudo apt install iproute2 gawk python3 python git vim tmux build-essential \
+gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev \
+flex bison libselinux1 gnupg wget git-core diffstat chrpath \
+socat xterm autoconf libtool tar unzip texinfo gcc-multilib \
+automake zlib1g:i386 screen pax gzip cpio python3-pip \
+python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 \
+nfs-kernel-server nfs-common libstdc++6:i386 libgtk2.0-0:i386 \
+dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386 \
+libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 \
+weechat x2goclient keepassxc slim suckless-tools tclsh \
+tasksel graphviz xvfb libncursesw5 lsb xfce4 xfce4-terminal xfce4-goodies
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
