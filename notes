@@ -12,7 +12,8 @@ nfs-kernel-server nfs-common libstdc++6:i386 libgtk2.0-0:i386 \
 dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386 \
 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 \
 weechat x2goclient keepassxc slim suckless-tools tclsh \
-tasksel graphviz xvfb libncursesw5 lsb xfce4 xfce4-terminal xfce4-goodies
+tasksel graphviz xvfb libncursesw5 lsb xfce4 xfce4-terminal xfce4-goodies \
+firefox
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -22,22 +23,25 @@ sudo groupadd xilinx
 sudo adduser aalniak
 sudo adduser aberke
 sudo adduser hguler
+sudo adduser boral
 sudo usermod -aG xilinx ckayhan
 sudo usermod -aG xilinx aalniak
 sudo usermod -aG xilinx aberke
 sudo usermod -aG xilinx hguler
+sudo usermod -aG xilinx boral
 
 # Vitis 2022.2 installation
 sudo mkdir -p /opt/Vitis
-sudo chown -R root:xilinx /opt/Vitis
+sudo chown -R ckayhan:ckayhan /opt/Vitis
 ./xsetup -b ConfigGen
 ./xsetup --agree XilinxEULA,3rdPartyEULA --batch Install --config ~/.Xilinx/install_config.txt
+sudo chown -R root:xilinx /opt/Vitis
 
 # Petalinux 2022.2 installation
-sudo chmod 755 ~/petalinux*.run
 sudo mkdir -p /opt/Petalinux/2022.2
-sudo chown -R root:xilinx /opt/Petalinux
+sudo chown -R ckayhan:ckayhan /opt/Petalinux
 ~/petalinux*.run -d /opt/Petalinux/2022.2
+sudo chown -R root:xilinx /opt/Petalinux
 
 ##sudo apt install -y wireshark python3-pip git vim tmux lib32stdc++6 libgtk2.0-0:i386 libfontconfig1:i386 libx11-6:i386 libxext6:i386 \
 ##libxrender1:i386 libsm6:i386 libqtgui4:i386 libstdc++6:i386 libgtk2.0-0:i386 dpkg-dev:i386 libtinfo5 libncurses5 tcl \
