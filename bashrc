@@ -9,7 +9,7 @@ HISTFILESIZE=
 HISTFILE=history
 HISTCONTROL=ignoredups:erasedups
 
-usbinfo() { udevadm info --query property /dev/disk/by-uuid/$(lsblk -o NAME,UUID|grep $1|awk '{print $2}') |egrep -i "ID_VENDOR_ID=|ID_MODEL_ID="; }
+#usbinfo() { udevadm info --query property /dev/disk/by-uuid/$(lsblk -o NAME,UUID|grep $1|awk '{print $2}') |egrep -i "ID_VENDOR_ID=|ID_MODEL_ID="; }
 
 gitbranch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -24,7 +24,7 @@ intfname ()
     #find /sys/class/net ! -type d | xargs --max-args=1 realpath | awk -v pciid=$(lspci|awk '/Ethernet/{print $1}') -F\/ '{if($0 ~ pciid){print $NF}}'
     #ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
     #ip route get 1.1.1.1 | awk '{print $5}'
-    route | grep '^default' | grep -o '[^ ]*$'
+    route | grep '^default' | grep -o '[^ ]*$'|head -n 1
     #nmcli|head -n 1|awk '{print $1}'|sed 's/.$//'
 }
 ipaddr(){
