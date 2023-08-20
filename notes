@@ -6,9 +6,9 @@ gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev \
 flex bison libselinux1 gnupg wget git-core diffstat chrpath \
 socat xterm autoconf libtool tar unzip texinfo gcc-multilib \
 automake zlib1g:i386 screen pax gzip cpio python3-pip \
-python3-pexpect xz-utils debianutils iputils-ping \
+python3-pexpect xz-utils debianutils iputils-ping rlwrap \
 python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 \
-nfs-kernel-server nfs-common libstdc++6:i386 libgtk2.0-0:i386 \
+nfs-kernel-server nfs-common nfs4-acl-tools libstdc++6:i386 libgtk2.0-0:i386 \
 dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386 \
 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 \
 weechat x2goclient keepassxc slim suckless-tools tclsh \
@@ -19,13 +19,25 @@ gstreamer1.0-tools gstreamer1.0-x libgstreamer1.0-0 libgstreamer1.0-dev gstreame
 gstreamer1.0-nice gstreamer1.0-opencv gstreamer1.0-pipewire gstreamer1.0-plugins-bad \
 gstreamer1.0-plugins-rtp gstreamer1.0-plugins-ugly gstreamer1.0-qt5 \
 gstreamer1.0-rtsp gstreamer1.0-vaapi brightnessctl brightness-udev \
-gstreamer1.0-omx-generic gstreamer1.0-omx-generic-config \
+gstreamer1.0-omx-generic gstreamer1.0-omx-generic-config tftp firewalld \
 bmon wireshark tcpdump tshark atop htop slurm tcptrack iftop nethogs speedometer \
 python3-numpy python3-all python3-cairo gstreamer1.0-python3-plugin-loader \
 python3-dbus python3 iptraf ifstat sysstat glances vnstat nload wavemon conky-all
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
+
+# Setup tftp
+sudo sed -e 's/^USE_INETD=true/USE_INETD=false/g' -i /etc/default/atftpd
+sudo sed -e 's/\/srv\/tftp/\/var\/lib\/tftpboot/g' -i /etc/default/atftpd
+sudo sed -e 's/^tftp/#tftp/g' -i /etc/inetd.conf
+sudo mkdir -p /var/lib/tftpboot
+sudo chown -R nobody:nogroup /var/lib/tftpboot
+sudo chmod -R 777 /var/lib/tftpboot
+sudo systemctl enable atftpd
+sudo firewall-cmd --permanent --zone=public --add-port=69/udp
+sudo firewall-cmd --reload
+sudo reboot
 
 # Create users & groups
 sudo groupadd xilinx
