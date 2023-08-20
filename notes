@@ -17,7 +17,12 @@ firefox gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-plugins
 gstreamer1.0-plugins-base-apps gstreamer1.0-plugins-good gstreamer1.0-pulseaudio \
 gstreamer1.0-tools gstreamer1.0-x libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-libav \
 gstreamer1.0-nice gstreamer1.0-opencv gstreamer1.0-pipewire gstreamer1.0-plugins-bad \
-gstreamer1.0-plugins-rtp gstreamer1.0-plugins-ugly gstreamer1.0-qt5 gstreamer1.0-rtsp gstreamer1.0-vaapi
+gstreamer1.0-plugins-rtp gstreamer1.0-plugins-ugly gstreamer1.0-qt5 \
+gstreamer1.0-rtsp gstreamer1.0-vaapi brightnessctl brightness-udev \
+gstreamer1.0-omx-generic gstreamer1.0-omx-generic-config \
+bmon wireshark tcpdump tshark atop htop slurm tcptrack iftop nethogs speedometer \
+python3-numpy python3-all python3-cairo gstreamer1.0-python3-plugin-loader \
+python3-dbus python3 iptraf ifstat sysstat glances vnstat nload wavemon conky-all
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
