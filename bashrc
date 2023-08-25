@@ -6,10 +6,7 @@ shopt -s checkwinsize
 shopt -u progcomp
 HISTSIZE=
 HISTFILESIZE=
-HISTFILE=history
 HISTCONTROL=ignoredups:erasedups
-
-#usbinfo() { udevadm info --query property /dev/disk/by-uuid/$(lsblk -o NAME,UUID|grep $1|awk '{print $2}') |egrep -i "ID_VENDOR_ID=|ID_MODEL_ID="; }
 
 gitbranch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -30,10 +27,8 @@ intfname ()
 ipaddr(){
   ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
 }
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n> '
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;208m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;38;5;223m\]($(osrelease)),$(gitbranch),$(ipaddr)\n> \[\033[01;38;5;249m\]'
-#PROMPT_COMMAND="history -a $HISTFILE; $PROMPT_COMMAND"
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a $HISTFILE; history -c; history -r"
+#PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 function colorgrid( )
 {
@@ -68,25 +63,6 @@ function colorgrid( )
     done
 }
 
-export PATH=$PATH:/home/ckayhan/feh/src
-
-# https://support.xilinx.com/s/article/69355?language=en_US
-# LIBRARY_PATH is needed for Vitis HLS
-#export "LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH"
-
-#bind -r '\e0'
-#bind -r '\e1'
-#bind -r '\e2'
-#bind -r '\e3'
-#bind -r '\e4'
-#bind -r '\e5'
-#bind -r '\e6'
-#bind -r '\e7'
-#bind -r '\e8'
-#bind -r '\e9'
-
-#export TERM=xterm-256color
-export TERM=xterm
 export VISUAL=vim
 export EDITOR=vim
-PATH=$PATH:/usr/sbin/
+export TCLLIBPATH=~/gpp4323

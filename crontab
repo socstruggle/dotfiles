@@ -1,1 +1,1 @@
-* * * * * cp -f history historybackup
+@daily cp -f ~/.bash_history ~/bash_history
