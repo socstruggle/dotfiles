@@ -4,26 +4,30 @@ sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade
 sudo apt install iproute2 gawk python3 python git vim tmux build-essential \
 gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev mosh libreoffice \
 flex bison libselinux1 gnupg wget git-core diffstat chrpath pixmap unar \
-socat xterm autoconf libtool tar unzip texinfo gcc-multilib blueman \
+socat xterm autoconf libtool tar unzip texinfo gcc-multilib blueman whois \
 automake zlib1g:i386 screen pax gzip cpio python3-pip gnome-system-monitor \
 python3-pexpect xz-utils debianutils iputils-ping rlwrap minicom ranger \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 nmap \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 nmap tcl-dev \
 nfs-kernel-server nfs-common nfs4-acl-tools libstdc++6:i386 libgtk2.0-0:i386 \
 dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386 vim-gtk3 gtk2-engines-pixbuf \
-libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 gedit atril \
-weechat x2goclient keepassxc slim suckless-tools tclsh aria2 libreoffice \
+libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 gedit atril tk-dev \
+weechat x2goclient keepassxc slim suckless-tools tclsh aria2 libreoffice libreadline-dev \
 tasksel graphviz xvfb libncursesw5 lsb xfce4 xfce4-terminal xfce4-goodies \
 firefox gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-plugins-base \
 gstreamer1.0-plugins-base-apps gstreamer1.0-plugins-good gstreamer1.0-pulseaudio \
 gstreamer1.0-tools gstreamer1.0-x libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-libav \
 gstreamer1.0-nice gstreamer1.0-opencv gstreamer1.0-pipewire gstreamer1.0-plugins-bad \
-gstreamer1.0-plugins-rtp gstreamer1.0-plugins-ugly gstreamer1.0-qt5 \
+gstreamer1.0-plugins-rtp gstreamer1.0-plugins-ugly gstreamer1.0-qt5 libspa-lib-0.1-dev \
 gstreamer1.0-rtsp gstreamer1.0-vaapi brightnessctl brightness-udev iw wireless-tools \
 gstreamer1.0-omx-generic gstreamer1.0-omx-generic-config tftp firewalld \
 bmon wireshark tcpdump tshark atop htop slurm tcptrack iftop nethogs speedometer \
 python3-numpy python3-all python3-cairo gstreamer1.0-python3-plugin-loader \
 python3-dbus python3 iptraf ifstat sysstat glances vnstat nload wavemon conky-all \
-usbutils pciutils tor isolinux ntfs-3g ntfs-3g-dev x2goserver
+usbutils pciutils tor isolinux ntfs-3g ntfs-3g-dev x2goserver dpkg-dev libdpkg-dev \
+blt libopencv-contrib-dev libopencv-dev libopencv-viz-dev libtcl8.6 libgraphviz-dev \
+dpkg-cross cross-config libc6-dev-armel-armhf-cross libc6-dev-armhf-cross \
+libc6-dev-arm64-cross libc6-dev-i386 libc6-dev usbview isc-dhcp-server ntp ntpdate \
+bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manager
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -33,6 +37,7 @@ sudo firewall-cmd --permanent --zone=trusted --add-port=69/udp
 sudo firewall-cmd --permanent --zone=trusted --add-port=60001/udp
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.233.1.0/24
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.247.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-service=ssh
 sudo firewall-cmd --permanent --zone=trusted --add-service=tftp
 sudo firewall-cmd --permanent --zone=trusted --add-service=nfs
@@ -46,7 +51,6 @@ sudo mkdir -p /var/lib/tftpboot
 sudo chown -R nobody:nogroup /var/lib/tftpboot
 sudo chmod -R 777 /var/lib/tftpboot
 sudo systemctl enable atftpd
-sudo reboot
 
 # Setup disks
 sudo mkdir /mnt/Elements1
@@ -69,6 +73,15 @@ sudo usermod -aG xilinx aalniak
 sudo usermod -aG xilinx aberke
 sudo usermod -aG xilinx hguler
 sudo usermod -aG xilinx boral
+
+sudo usermod -aG dialout ckayhan
+sudo usermod -aG dialout alniak
+sudo usermod -aG dialout aberke
+sudo usermod -aG dialout hberke
+sudo usermod -aG dialout boral
+
+sudo usermod -aG libvirt ckayhan
+sudo usermod -aG kvm ckayhan
 
 # Vitis 2022.2 installation
 sudo mkdir -p /opt/Vitis
@@ -107,6 +120,8 @@ echo '      addresses: [10.233.1.67/24]'|sudo tee -a /etc/netplan/00-installer-c
 echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
 echo '    enx2887baf4aecf:'|sudo tee -a /etc/netplan/00-installer-config.yaml
 echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
+echo '      addresses: [10.247.1.67/24]'|sudo tee -a /etc/netplan/00-installer-config.yaml
+echo '      mtu: 8192'|sudo tee -a /etc/netplan/00-installer-config.yaml
 echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
 echo '    enx3460f9356808:'|sudo tee -a /etc/netplan/00-installer-config.yaml
 echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
@@ -119,3 +134,6 @@ sudo mkdir -p /mnt/nfsroot
 sudo chown -R nobody:nogroup /mnt/nfsroot
 echo '/mnt/nfsroot 10.233.1.0/24(rw,sync,no_root_squash,no_subtree_check)'|sudo tee -a /etc/exports
 sudo systemctl restart nfs-kernel-server
+
+# Setup /mnt/nfsshareVio
+sudo mount -t nfs 10.230.1.17:/mnt/nfsshare /mnt/nfsshareVio

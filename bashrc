@@ -4,8 +4,8 @@ fi
 shopt -s histappend
 shopt -s checkwinsize
 shopt -u progcomp
-HISTSIZE=
-HISTFILESIZE=
+HISTSIZE=-1
+HISTFILESIZE=-1
 HISTCONTROL=ignoredups:erasedups
 
 gitbranch() {
