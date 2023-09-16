@@ -25,7 +25,8 @@ intfname ()
     #nmcli|head -n 1|awk '{print $1}'|sed 's/.$//'
 }
 ipaddr(){
-  ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
+  #ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
+  retval="noip"
 }
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;208m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;38;5;223m\]($(osrelease)),$(gitbranch),$(ipaddr)\n> \[\033[01;38;5;249m\]'
 #PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
