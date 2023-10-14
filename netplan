@@ -1,0 +1,59 @@
+
+network:
+  bridges:
+    br0:
+      dhcp4: false
+      dhcp6: false
+      gateway4: 10.230.1.1
+      addresses: [10.230.1.18/24]
+      nameservers:
+              addresses: [10.230.1.238]
+      interfaces: [enp1s0]
+    br1:
+      dhcp4: false
+      dhcp6: false
+      addresses: [10.233.1.67/24]
+      interfaces: [enx2887baf3e87a]
+    br2:
+      dhcp4: false
+      dhcp6: false
+      addresses: [10.247.1.67/24]
+      interfaces: [enx2887baf4aecf]
+    br3:
+      dhcp4: false
+      dhcp6: false
+      addresses: [10.250.1.67/24]
+      interfaces: [enx207bd204104e]
+  ethernets:
+    enp1s0:
+      dhcp4: false
+      dhcp6: false
+      mtu: 8192
+      optional: true
+    enx207bd223d7eb:
+      dhcp4: false
+      dhcp6: false
+      optional: true
+    enx207bd2434354:
+      dhcp4: false
+      dhcp6: false
+      optional: true
+    enx2887baf3e87a:
+      dhcp4: false
+      dhcp6: false
+      mtu: 8192
+      optional: true
+    enx2887baf4aecf:
+      dhcp4: false
+      dhcp6: false
+      mtu: 8192
+      optional: true
+    enx3460f9356808:
+      dhcp4: false
+      dhcp6: false
+      optional: true
+    enx207bd204104e:
+      dhcp4: false
+      dhcp6: false
+      optional: true
+  version: 2

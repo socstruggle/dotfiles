@@ -29,7 +29,7 @@ dpkg-cross cross-config libc6-dev-armel-armhf-cross libc6-dev-armhf-cross \
 libc6-dev-arm64-cross libc6-dev-i386 libc6-dev usbview isc-dhcp-server ntp ntpdate \
 bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manager libpod-* \
 libbison-dev libfl-dev ffmpeg mpv vlc iperf3 iperf nautilus elinks links links2 \
-unrar unrar-free rar
+unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -156,3 +156,11 @@ sudo exportfs -ra
 # dummy notes
 sudo sysctl -w net.core.rmem_max=100000000
 sudo sysctl -w net.core.wmem_max=100000000
+
+# Setup /etc/udev rules
+echo 'KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", ENV{USB_HUB_TYPE}="067b:2303"'|sudo tee -a /etc/udev/rules.d/99-gpp4323-rs232.rules
+echo 'ENV{USB_HUB_TYPE}=="067b:2303", KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", KERNELS=="1-7.2:1.0", SYMLINK+="gpp4323", GROUP="dialout"'|sudo tee -a /etc/udev/rules.d/99-gpp4323-rs232.rules
+echo 'KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a40", ATTRS{idProduct}=="0101", ENV{USB_HUB_TYPE}="1a40:0101"'|sudo tee -a /etc/udev/rules.d/99-kriaUart-rs232.rules
+echo 'ENV{USB_HUB_TYPE}=="1a40:0101", KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", KERNELS=="1-8.2:1.1", SYMLINK+="kriaUart", GROUP="dialout", MODE="0666"'|sudo tee -a /etc/udev/rules.d/99-kriaUart-rs232.rules
+echo 'KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ENV{USB_HUB_TYPE}="0403:6001"'|sudo tee -a /etc/udev/rules.d/99-ulaq5000-rs232.rules
+echo 'ENV{USB_HUB_TYPE}=="0403:6001", KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", KERNELS=="1-7.4:1.0", SYMLINK+="ulaq5000", GROUP="dialout", MODE="0666"'|sudo tee -a /etc/udev/rules.d/99-ulaq5000-rs232.rules
