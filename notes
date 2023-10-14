@@ -110,34 +110,7 @@ sudo chown -R root:xilinx /opt/Vitis
 sudo chmod -R 755 /opt/Vitis
 
 # Network setup
-echo ''|sudo tee  /etc/netplan/00-installer-config.yaml
-echo 'network:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '  ethernets:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '    enp1s0:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      gateway4: 10.230.1.1'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      addresses: [10.230.1.18/24]'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      nameservers:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '              addresses: [10.230.1.238]'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '    enx207bd223d7eb:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '    enx207bd2434354:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '    enx2887baf3e87a:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      addresses: [10.233.1.67/24]'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '    enx2887baf4aecf:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      addresses: [10.247.1.67/24]'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      mtu: 8192'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '    enx3460f9356808:'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      dhcp4: false'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '      optional: true'|sudo tee -a /etc/netplan/00-installer-config.yaml
-echo '  version: 2'|sudo tee -a /etc/netplan/00-installer-config.yaml
+sudo cp -f ~/netplan /etc/netplan/00-installer-config.yaml
 sudo netplan apply
 
 # Setup /mnt/nfsroot
