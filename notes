@@ -29,7 +29,7 @@ dpkg-cross cross-config libc6-dev-armel-armhf-cross libc6-dev-armhf-cross \
 libc6-dev-arm64-cross libc6-dev-i386 libc6-dev usbview isc-dhcp-server ntp ntpdate \
 bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manager libpod-* \
 libbison-dev libfl-dev ffmpeg mpv vlc iperf3 iperf nautilus elinks links links2 \
-unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler
+unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -38,9 +38,21 @@ git config --global user.email cemkayhan42@gmail.com
 sudo firewall-cmd --permanent --zone=trusted --add-port=69/udp
 sudo firewall-cmd --permanent --zone=trusted --add-port=60001/udp
 sudo firewall-cmd --permanent --zone=trusted --add-port=8180/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8554/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8554/tcp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8000/tcp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8001/tcp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8002/tcp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8003/tcp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8000/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8001/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8002/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=8003/udp
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.233.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.247.1.0/24
+sudo firewall-cmd --permanent --zone=trusted --add-source=224.1.0.0/16
+sudo firewall-cmd --permanent --zone=trusted --add-source=192.168.45.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-service=ssh
 sudo firewall-cmd --permanent --zone=trusted --add-service=tftp
 sudo firewall-cmd --permanent --zone=trusted --add-service=nfs

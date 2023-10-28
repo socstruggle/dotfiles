@@ -64,6 +64,31 @@ function colorgrid( )
     done
 }
 
+function ulaqDev()
+{
+  cd ~/PETALINUX/AseyeCc && \
+  petalinux-create -t project -n $1 --template zynqMP && \
+  cd $1 && \
+  git init && \
+  git remote add origin git@10.230.1.226:ankaraswprojects/fpgagroup/aseye/sw/petalinux.git && \
+  git fetch origin && \
+  git checkout -f ULAQ_Development
+}
+
+function petaPackageZynqMp(){
+  petalinux-package --force --boot --fsbl --fpga images/linux/system.bit  --u-boot --pmufw
+}
+
+function petaPackageZynqMpR5(){
+  petalinux-package --force --boot --fsbl --fpga images/linux/system.bit  --add $1 --cpu=r5-0 --u-boot --pmufw
+}
+
 export VISUAL=vim
 export EDITOR=vim
 export TCLLIBPATH=~/gpp4323
+export DISK1=/mnt/Elements2
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  expect ~/expectSshAdd.exp
+fi

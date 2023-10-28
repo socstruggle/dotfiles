@@ -1,0 +1,5 @@
+set hostname [exec hostname]
+spawn ssh-add $::env(HOME)/id_${hostname}
+expect Enter
+send "[exec cat $::env(DISK1)/id_${hostname}.passphrase]\n"
+expect Identity
