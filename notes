@@ -29,7 +29,9 @@ dpkg-cross cross-config libc6-dev-armel-armhf-cross libc6-dev-armhf-cross \
 libc6-dev-arm64-cross libc6-dev-i386 libc6-dev usbview isc-dhcp-server ntp ntpdate \
 bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manager libpod-* \
 libbison-dev libfl-dev ffmpeg mpv vlc iperf3 iperf nautilus elinks links links2 \
-unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv
+unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv \
+python3-subunit mesa-common-dev tcl-tclreadline tcllib-critcl tcl-expect tcl-expect-dev \
+tcl-thread tcl-udp tcl-yajltcl tclcl tclcl-dev
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -149,3 +151,11 @@ echo 'KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendo
 echo 'ENV{USB_HUB_TYPE}=="1a40:0101", KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", KERNELS=="1-8.2:1.1", SYMLINK+="kriaUart", GROUP="dialout", MODE="0666"'|sudo tee -a /etc/udev/rules.d/99-kriaUart-rs232.rules
 echo 'KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ENV{USB_HUB_TYPE}="0403:6001"'|sudo tee -a /etc/udev/rules.d/99-ulaq5000-rs232.rules
 echo 'ENV{USB_HUB_TYPE}=="0403:6001", KERNEL=="ttyUSB[0-9]*", SUBSYSTEM=="tty", KERNELS=="1-7.4:1.0", SYMLINK+="ulaq5000", GROUP="dialout", MODE="0666"'|sudo tee -a /etc/udev/rules.d/99-ulaq5000-rs232.rules
+
+# temp
+hw_server -stcp:10.230.1.18:5125 -p5000 -e "set jtag-port-filter Digilent/JTAG-HS2/210249A73CF5"
+mwr  0xff5e0200 0x0100
+petalinux-boot --jtag --u-boot --fpga --bitstream images/linux/system.bit --pmufw --hw_server-url TCP:10.230.1.18:5125
+
+# petalinux notes 1
+to compile kernel modules on the running board you have to first cd to 'usr/src/kernel' directory and run 'make scripts prepare' command

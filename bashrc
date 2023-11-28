@@ -4,9 +4,10 @@ fi
 shopt -s histappend
 shopt -s checkwinsize
 shopt -u progcomp
-HISTSIZE=-1
-HISTFILESIZE=-1
+HISTSIZE=INFINITE_HISTSIZE
+HISTFILESIZE=INFINITE_HISTFILESIZE
 HISTCONTROL=ignoredups:erasedups
+PROMPT_COMMAND="history -a; history -n"
 
 gitbranch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -25,11 +26,10 @@ intfname ()
     #nmcli|head -n 1|awk '{print $1}'|sed 's/.$//'
 }
 ipaddr(){
-  #ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
-  retval="noip"
+  ip address show dev $(intfname) | grep -w inet | awk '{print $2}'
 }
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;38;5;208m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;38;5;223m\]($(osrelease)),$(gitbranch),$(ipaddr)\n> \[\033[01;38;5;249m\]'
-#PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 function colorgrid( )
 {
@@ -64,7 +64,7 @@ function colorgrid( )
     done
 }
 
-function ulaqDev()
+function ulaqPetaDev()
 {
   cd ~/PETALINUX/AseyeCc && \
   petalinux-create -t project -n $1 --template zynqMP && \
@@ -83,10 +83,32 @@ function petaPackageZynqMpR5(){
   petalinux-package --force --boot --fsbl --fpga images/linux/system.bit  --add $1 --cpu=r5-0 --u-boot --pmufw
 }
 
+function petaZynqMPBuild()
+{
+  HWADDR=$(cat HWADDR) petalinux-build -c device-tree && \
+  HWADDR=$(cat HWADDR) petalinux-build && \
+  petaPackageZynqMp
+}
+
+function petaZynqMPBuildClean()
+{
+  HWADDR=$(cat HWADDR) petalinux-build -c device-tree -x cleansstate && \
+  HWADDR=$(cat HWADDR) petalinux-build -c device-tree && \
+  HWADDR=$(cat HWADDR) petalinux-build -x cleansstate && \
+  HWADDR=$(cat HWADDR) petalinux-build && \
+  petaPackageZynqMp
+}
+
 export VISUAL=vim
 export EDITOR=vim
 export TCLLIBPATH=~/gpp4323
 export DISK1=/mnt/Elements2
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
