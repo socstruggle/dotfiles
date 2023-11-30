@@ -31,7 +31,7 @@ bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manag
 libbison-dev libfl-dev ffmpeg mpv vlc iperf3 iperf nautilus elinks links links2 \
 unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv \
 python3-subunit mesa-common-dev tcl-tclreadline tcllib-critcl tcl-expect tcl-expect-dev \
-tcl-thread tcl-udp tcl-yajltcl tclcl tclcl-dev
+tcl-thread tcl-udp tcl-yajltcl tclcl tclcl-dev cmake checkinstall
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -159,3 +159,15 @@ petalinux-boot --jtag --u-boot --fpga --bitstream images/linux/system.bit --pmuf
 
 # petalinux notes 1
 to compile kernel modules on the running board you have to first cd to 'usr/src/kernel' directory and run 'make scripts prepare' command
+
+#
+# how to compile opencv4.1.1 on centos for Vitis HLS 2022.2                                                                                                                                   
+mkdir -p ~/myopencv && cd ~/myopencv
+git clone https://github.com/opencv/opencv.git && git clone https://github.com/opencv/opencv_contrib.git                                                                                      
+cd opencv && mkdir build && cd build                                                                                                                                                          
+git checkout 4.1.1                                                                                                                                                                            
+cmake3 -DCMAKE_BUILD_TYPE=RELEASE -DWITH_V4L=ON -DBUILD_TESTS=OFF -DBUILD_ZLIB=ON \
+-DBUILD_JPEG=ON -DWITH_JPEG=ON -DWITH_PNG=ON -DBUILD_EXAMPLES=OFF -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF \
+-DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF -DWITH_EIGEN=OFF -DCMAKE_CXX_COMPILER=/opt/Vitis/Vitis_HLS/2022.2/tps/lnx64/gcc-8.3.0/bin/g++ ..                                                       
+make -j 10                                                                                                                                                                                    
+#sudo make install
