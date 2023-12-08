@@ -31,7 +31,16 @@ bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manag
 libbison-dev libfl-dev ffmpeg mpv vlc iperf3 iperf nautilus elinks links links2 \
 unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv \
 python3-subunit mesa-common-dev tcl-tclreadline tcllib-critcl tcl-expect tcl-expect-dev \
-tcl-thread tcl-udp tcl-yajltcl tclcl tclcl-dev cmake checkinstall
+tcl-thread tcl-udp tcl-yajltcl tclcl tclcl-dev cmake checkinstall \
+aglfn docutils-common doxygen fonts-font-awesome gdbserver gnuplot-data gnuplot-qt googletest \
+libbabeltrace1 libboost-filesystem1.71-dev libboost-program-options1.71-dev \
+libboost-program-options1.71.0 libboost-system1.71-dev libboost-system1.71.0 libboost1.71-dev \
+libc6-dbg libclang1-10 libjs-modernizr libjs-sphinxdoc libjs-underscore libllvm10 \
+libprotobuf-dev libprotoc17 libtinyxml2-6a libwxbase3.0-0v5 libwxgtk3.0-gtk3-0v5 libxapian30 opencl-c-headers \
+opencl-clhpp-headers python-babel-localedata python3-alabaster python3-babel \
+python3-docutils python3-imagesize python3-packaging python3-roman sphinx-rtd-theme-common *libxcb* \
+g++ pkg-config libgl1-mesa-dev libxcb*-dev libfontconfig1-dev libxkbcommon-x11-dev python libgtk-3-dev
+
 sudo dpkg-reconfigure dash
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
@@ -160,14 +169,13 @@ petalinux-boot --jtag --u-boot --fpga --bitstream images/linux/system.bit --pmuf
 # petalinux notes 1
 to compile kernel modules on the running board you have to first cd to 'usr/src/kernel' directory and run 'make scripts prepare' command
 
-#
-# how to compile opencv4.1.1 on centos for Vitis HLS 2022.2                                                                                                                                   
-mkdir -p ~/myopencv && cd ~/myopencv
-git clone https://github.com/opencv/opencv.git && git clone https://github.com/opencv/opencv_contrib.git                                                                                      
-cd opencv && mkdir build && cd build                                                                                                                                                          
-git checkout 4.1.1                                                                                                                                                                            
-cmake3 -DCMAKE_BUILD_TYPE=RELEASE -DWITH_V4L=ON -DBUILD_TESTS=OFF -DBUILD_ZLIB=ON \
+# how to compile opencv4.4.0 on centos for Vitis HLS 2022.2                                                                                                                                   
+md myopencv && cd myopencv
+git clone https://github.com/opencv/opencv --branch 4.4.0 source && git clone https://github.com/opencv/opencv_contrib --branch 4.4.0 source_contrib
+cd source && md build && cd build
+LIBRARY_PATH=/usr/lib/x86_64-linux-gnu cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local/opencv4.4.0 \
+-DWITH_V4L=ON -DOPENCV_EXTRA_MODULES_PATH=/home/ckayhan/myopencv/source_contrib/modules -DBUILD_TESTS=OFF -DBUILD_ZLIB=ON \
 -DBUILD_JPEG=ON -DWITH_JPEG=ON -DWITH_PNG=ON -DBUILD_EXAMPLES=OFF -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF \
--DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF -DWITH_EIGEN=OFF -DCMAKE_CXX_COMPILER=/opt/Vitis/Vitis_HLS/2022.2/tps/lnx64/gcc-8.3.0/bin/g++ ..                                                       
-make -j 10                                                                                                                                                                                    
-#sudo make install
+-DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF -DCMAKE_CXX_COMPILER=/opt/Vitis/Vitis_HLS/2022.2/tps/lnx64/gcc-6.2.0/bin/g++ ..
+LIBRARY_PATH=/usr/lib/x86_64-linux-gnu make all -j10
+sudo LIBRARY_PATH=/usr/lib/x86_64-linux-gnu make install
