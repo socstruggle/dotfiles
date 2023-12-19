@@ -42,8 +42,12 @@ python3-docutils python3-imagesize python3-packaging python3-roman sphinx-rtd-th
 g++ pkg-config libgl1-mesa-dev libxcb*-dev libfontconfig1-dev libxkbcommon-x11-dev python libgtk-3-dev
 
 sudo dpkg-reconfigure dash
+sudo dpkg-reconfigure tzdata
 git config --global user.name "Cem Kayhan"
 git config --global user.email cemkayhan42@gmail.com
+
+# setup passphrase
+chmod 600 ~/id_realserv.passphrase
 
 # Setup firewall
 sudo firewall-cmd --permanent --zone=trusted --add-port=69/udp
@@ -79,16 +83,11 @@ sudo chmod -R 777 /var/lib/tftpboot
 sudo systemctl enable atftpd
 
 # Setup disks
-sudo mkdir /mnt/Elements1
-sudo mkdir /mnt/Elements2
 sudo mkdir /mnt/Toshiba1
 sudo mkdir /mnt/Toshiba2
-echo 'UUID=163C93623C933BA5 /mnt/Elements1 ntfs-3g permissions,locale=en_US.utf8 0 0'|sudo tee -a /etc/fstab
-echo 'UUID=9082DD1582DD00A0 /mnt/Elements2 ntfs-3g permissions,locale=en_US.utf8 0 0'|sudo tee -a /etc/fstab
-echo 'UUID=DC18970E1896E6B4 /mnt/Toshiba1 ntfs-3g permissions,locale=en_US.utf8 0 0'|sudo tee -a /etc/fstab
-echo 'UUID=B2445F06445ECD2B /mnt/Toshiba2 ntfs-3g permissions,locale=en_US.utf8 0 0'|sudo tee -a /etc/fstab
+echo 'UUID=96BEC022BEBFF8B7 /mnt/Toshiba1 ntfs-3g permissions,locale=en_US.utf8 0 0'|sudo tee -a /etc/fstab
+echo 'UUID=6CDA5EB7DA5E7CF0 /mnt/Toshiba2 ntfs-3g permissions,locale=en_US.utf8 0 0'|sudo tee -a /etc/fstab
 sudo mount -a
-sudo chmod -R 700 /mnt/Elements2
 
 # Create users & groups
 sudo groupadd xilinx
@@ -96,20 +95,27 @@ sudo adduser aalniak
 sudo adduser aberke
 sudo adduser hguler
 sudo adduser boral
+sudo adduser dgorken
 sudo usermod -aG xilinx ckayhan
 sudo usermod -aG xilinx aalniak
 sudo usermod -aG xilinx aberke
 sudo usermod -aG xilinx hguler
 sudo usermod -aG xilinx boral
+sudo usermod -aG xilinx dgorken
 
 sudo usermod -aG dialout ckayhan
 sudo usermod -aG dialout alniak
 sudo usermod -aG dialout aberke
 sudo usermod -aG dialout hberke
 sudo usermod -aG dialout boral
+sudo usermod -aG dialout dgorken
 
 sudo usermod -aG libvirt ckayhan
 sudo usermod -aG kvm ckayhan
+
+# Change sudo for ckayhan
+sudo visudo
+add line echo 'Defaults:ckayhan !authenticate'
 
 # Vitis 2022.2 installation
 sudo mkdir -p /opt/Vitis
@@ -119,12 +125,19 @@ sudo chown -R ckayhan:ckayhan /opt/Vitis
 sudo chown -R root:xilinx /opt/Vitis
 sudo chmod -R 755 /opt/Vitis
 
-# Petalinux 2022.2 installation
-sudo mkdir -p /opt/Petalinux/2022.2
-sudo chown -R ckayhan:ckayhan /opt/Petalinux
-~/petalinux*.run -d /opt/Petalinux/2022.2
-sudo chown -R root:xilinx /opt/Petalinux
-sudo chmod -R 755 /opt/Petalinux
+# Petalinux 2022.2 installation (begin)
+sudo mkdir -p /mnt/Toshiba1/Petalinux/2022.2
+sudo chown -R ckayhan:ckayhan /mnt/Toshiba1/Petalinux/2022.2
+~/petalinux*.run -d /mnt/Toshiba1/Petalinux/2022.2
+sudo chown -R root:xilinx /mnt/Toshiba1/Petalinux
+sudo chmod -R 755 /mnt/Toshiba1/Petalinux
+
+sudo mkdir -p /mnt/Toshiba2/Petalinux/2022.2
+sudo chown -R ckayhan:ckayhan /mnt/Toshiba2/Petalinux/2022.2
+~/petalinux*.run -d /mnt/Toshiba2/Petalinux/2022.2
+sudo chown -R root:xilinx /mnt/Toshiba2/Petalinux
+sudo chmod -R 755 /mnt/Toshiba2/Petalinux
+# Petalinux 2022.2 installation (end)
 
 # Vivado 2018.3 installation
 ./xsetup -b ConfigGen
@@ -169,7 +182,7 @@ petalinux-boot --jtag --u-boot --fpga --bitstream images/linux/system.bit --pmuf
 # petalinux notes 1
 to compile kernel modules on the running board you have to first cd to 'usr/src/kernel' directory and run 'make scripts prepare' command
 
-# how to compile opencv4.4.0 on centos for Vitis HLS 2022.2                                                                                                                                   
+# how to compile opencv4.4.0 on Ubuntu-20.04 for Vitis HLS 2022.2                                                                                                                                   
 md myopencv && cd myopencv
 git clone https://github.com/opencv/opencv --branch 4.4.0 source && git clone https://github.com/opencv/opencv_contrib --branch 4.4.0 source_contrib
 cd source && md build && cd build
@@ -179,3 +192,30 @@ LIBRARY_PATH=/usr/lib/x86_64-linux-gnu cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_
 -DWITH_OPENEXR=OFF -DBUILD_OPENEXR=OFF -DCMAKE_CXX_COMPILER=/opt/Vitis/Vitis_HLS/2022.2/tps/lnx64/gcc-6.2.0/bin/g++ ..
 LIBRARY_PATH=/usr/lib/x86_64-linux-gnu make all -j10
 sudo LIBRARY_PATH=/usr/lib/x86_64-linux-gnu make install
+
+# Create /mnt directories
+sudo mkdir /mnt/Elements1
+sudo mkdir /mnt/Elements2
+sudo mkdir /mnt/Toshiba1
+sudo mkdir /mnt/Toshiba2
+
+# netplan config
+# This is the network config written by 'subiquity'
+network:
+  bridges:
+    br0:
+      dhcp4: false
+      dhcp6: false
+      gateway4: 10.230.1.1
+      addresses: [10.230.1.66/24]
+      nameservers:
+              #addresses: [10.230.1.238]
+              addresses: [8.8.8.8]
+              addresses: [8.8.4.4]
+      interfaces: [enp3s0]
+  ethernets:
+    enp3s0:
+      dhcp4: false
+      dhcp6: false
+      critical: true
+  version: 2

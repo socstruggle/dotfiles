@@ -4,8 +4,8 @@ fi
 shopt -s histappend
 shopt -s checkwinsize
 shopt -u progcomp
-HISTSIZE=INFINITE_HISTSIZE
-HISTFILESIZE=INFINITE_HISTFILESIZE
+HISTSIZE=-1
+HISTFILESIZE=-1
 HISTCONTROL=ignoredups:erasedups
 PROMPT_COMMAND="history -a; history -n"
 
@@ -22,7 +22,7 @@ intfname ()
     #find /sys/class/net ! -type d | xargs --max-args=1 realpath | awk -v pciid=$(lspci|awk '/Ethernet/{print $1}') -F\/ '{if($0 ~ pciid){print $NF}}'
     #ip addr | awk '/state UP/ {print $2}' | sed 's/.$//'
     #ip route get 1.1.1.1 | awk '{print $5}'
-    route | grep '^default' | grep -o '[^ ]*$'|head -n 1
+    /sbin/route -n | grep '0.0.0.0' | grep -o '[^ ]*$'|head -n 1
     #nmcli|head -n 1|awk '{print $1}'|sed 's/.$//'
 }
 ipaddr(){
@@ -102,13 +102,11 @@ function petaZynqMPBuildClean()
 export VISUAL=vim
 export EDITOR=vim
 export TCLLIBPATH=~/gpp4323
-export DISK1=/mnt/Elements2
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
