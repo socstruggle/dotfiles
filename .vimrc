@@ -14,6 +14,10 @@ set ignorecase
 set nowrap
 set noswapfile
 
+"nnoremap j jzz
+"nnoremap k kzz
+"nnoremap n nzz
+
 nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap tt :tabe %<CR>
 nnoremap tr :tabp<CR>
@@ -27,6 +31,10 @@ nnoremap fx <C-w>c
 nnoremap fs <C-w>s
 nnoremap fv <C-w>v
 nnoremap fo <C-w>o
+nnoremap f+ <C-w>+
+nnoremap f- <C-w>-
+nnoremap f> <C-w>>
+nnoremap f< <C-w><
 "nnoremap k kzz
 "nnoremap j jzz
 
@@ -81,21 +89,21 @@ command! Fullp call Fullp()
 "cnoremap <silent> <expr> <enter> CenterSearch()
 ":nnoremap / :execute "normal! /\<lt>cr>zz"<c-left><right>
 
-function! CenteredFindNext(forward)
-    " save the current value for later restore
-    let s:so_curr=&scrolloff
-    set scrolloff=999
-    try
-        if a:forward
-            silent normal! n
-        else
-            silent normal! N
-        endif
-    finally
-        " restore no matter what
-        let &scrolloff=s:so_curr
-    endtry
-endfunction
-
-:nnoremap <silent>n :call CenteredFindNext(1)<CR>
-:nnoremap <silent>N :call CenteredFindNext(0)<CR>
+"function! CenteredFindNext(forward)
+"    " save the current value for later restore
+"    let s:so_curr=&scrolloff
+"    set scrolloff=999
+"    try
+"        if a:forward
+"            silent normal! n
+"        else
+"            silent normal! N
+"        endif
+"    finally
+"        " restore no matter what
+"        let &scrolloff=s:so_curr
+"    endtry
+"endfunction
+"
+":nnoremap <silent>n :call CenteredFindNext(1)<CR>
+":nnoremap <silent>N :call CenteredFindNext(0)<CR>

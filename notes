@@ -1,26 +1,26 @@
 # Ubuntu 20.04.6 first install
 sudo apt update && sudo apt upgrade
 sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade 
-sudo apt install iproute2 gawk python3 python git vim tmux build-essential \
+sudo apt install iproute2 gawk python3 python git vim tmux build-essential testdisk \
 gcc make net-tools libncurses5-dev atftpd zlib1g-dev libssl-dev mosh libreoffice \
-flex bison libselinux1 gnupg wget git-core diffstat chrpath pixmap unar \
-socat xterm autoconf libtool tar unzip texinfo gcc-multilib blueman whois \
-automake zlib1g:i386 screen pax gzip cpio python3-pip gnome-system-monitor \
+flex bison libselinux1 gnupg wget git-core diffstat chrpath pixmap unar libtty1 termrec \
+socat xterm autoconf libtool tar unzip texinfo gcc-multilib blueman whois nvidia-common \
+automake zlib1g:i386 screen pax gzip cpio python3-pip gnome-system-monitor ubuntu-drivers-common \
 python3-pexpect xz-utils debianutils iputils-ping rlwrap minicom ranger \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 nmap tcl-dev \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 nmap tcl-dev evince \
 nfs-kernel-server nfs-common nfs4-acl-tools libstdc++6:i386 libgtk2.0-0:i386 \
 dpkg-dev:i386 libtinfo5 libncurses5 libfontconfig1:i386 vim-gtk3 gtk2-engines-pixbuf \
 libx11-6:i386 libxext6:i386 libxrender1:i386 libsm6:i386 gedit atril tk-dev \
 weechat x2goclient keepassxc slim suckless-tools tclsh aria2 libreoffice libreadline-dev \
 tasksel graphviz xvfb libncursesw5 lsb xfce4 xfce4-terminal xfce4-goodies \
-firefox gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-plugins-base \
+libfftw3-dev firefox gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-plugins-base \
 gstreamer1.0-plugins-base-apps gstreamer1.0-plugins-good gstreamer1.0-pulseaudio \
 gstreamer1.0-tools gstreamer1.0-x libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-libav \
 gstreamer1.0-nice gstreamer1.0-opencv gstreamer1.0-pipewire gstreamer1.0-plugins-bad \
 gstreamer1.0-plugins-rtp gstreamer1.0-plugins-ugly gstreamer1.0-qt5 libspa-lib-0.1-dev \
 gstreamer1.0-rtsp gstreamer1.0-vaapi brightnessctl brightness-udev iw wireless-tools \
-gstreamer1.0-omx-generic gstreamer1.0-omx-generic-config tftp firewalld \
-bmon wireshark tcpdump tshark atop htop slurm tcptrack iftop nethogs speedometer \
+gstreamer1.0-omx-generic gstreamer1.0-omx-generic-config tftp firewalld nvidia-driver-535-server \
+bmon inotify-tools wireshark tcpdump tshark atop htop slurm tcptrack iftop nethogs speedometer \
 python3-numpy python3-all python3-cairo gstreamer1.0-python3-plugin-loader \
 python3-dbus python3 iptraf ifstat sysstat glances vnstat nload wavemon conky-all \
 usbutils pciutils tor isolinux ntfs-3g ntfs-3g-dev x2goserver dpkg-dev libdpkg-dev \
@@ -29,7 +29,7 @@ dpkg-cross cross-config libc6-dev-armel-armhf-cross libc6-dev-armhf-cross \
 libc6-dev-arm64-cross libc6-dev-i386 libc6-dev usbview isc-dhcp-server ntp ntpdate \
 bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm virt-manager libpod-* \
 libbison-dev libfl-dev ffmpeg mpv vlc iperf3 iperf nautilus elinks links links2 \
-unrar unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv \
+unrar glibc-source unrar-free rar kexec-tools makedumpfile crash device-tree-compiler pqiv \
 python3-subunit mesa-common-dev tcl-tclreadline tcllib-critcl tcl-expect tcl-expect-dev \
 tcl-thread tcl-udp tcl-yajltcl tclcl tclcl-dev cmake checkinstall \
 aglfn docutils-common doxygen fonts-font-awesome gdbserver gnuplot-data gnuplot-qt googletest \
@@ -39,8 +39,11 @@ libc6-dbg libclang1-10 libjs-modernizr libjs-sphinxdoc libjs-underscore libllvm1
 libprotobuf-dev libprotoc17 libtinyxml2-6a libwxbase3.0-0v5 libwxgtk3.0-gtk3-0v5 libxapian30 opencl-c-headers \
 opencl-clhpp-headers python-babel-localedata python3-alabaster python3-babel \
 python3-docutils python3-imagesize python3-packaging python3-roman sphinx-rtd-theme-common *libxcb* \
-g++ pkg-config libgl1-mesa-dev libxcb*-dev libfontconfig1-dev libxkbcommon-x11-dev python libgtk-3-dev
+g++ pkg-config libgl1-mesa-dev libxcb*-dev libfontconfig1-dev libxkbcommon-x11-dev python libgtk-3-dev \
+resolvconf bluez bluez-tools bluetooth btscanner rfkill inxi chntpw mokutil linux-generic-hwe-20.04 \
+gdebi
 
+sudo apt purge network-manager network-manager-gnome
 sudo dpkg-reconfigure dash
 sudo dpkg-reconfigure tzdata
 git config --global user.name "Cem Kayhan"
@@ -63,11 +66,16 @@ sudo firewall-cmd --permanent --zone=trusted --add-port=8000/udp
 sudo firewall-cmd --permanent --zone=trusted --add-port=8001/udp
 sudo firewall-cmd --permanent --zone=trusted --add-port=8002/udp
 sudo firewall-cmd --permanent --zone=trusted --add-port=8003/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=5000/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=5001/udp
+sudo firewall-cmd --permanent --zone=trusted --add-port=5002/udp
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.230.1.0/24
+sudo firewall-cmd --permanent --zone=trusted --add-source=12.160.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.233.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-source=10.247.1.0/24
 sudo firewall-cmd --permanent --zone=trusted --add-source=224.1.0.0/16
 sudo firewall-cmd --permanent --zone=trusted --add-source=192.168.45.0/24
+sudo firewall-cmd --permanent --zone=trusted --add-source=192.164.1.100/24
 sudo firewall-cmd --permanent --zone=trusted --add-service=ssh
 sudo firewall-cmd --permanent --zone=trusted --add-service=tftp
 sudo firewall-cmd --permanent --zone=trusted --add-service=nfs
@@ -126,6 +134,12 @@ sudo chown -R root:xilinx /opt/Vitis
 sudo chmod -R 755 /opt/Vitis
 
 # Petalinux 2022.2 installation (begin)
+sudo mkdir -p /mnt/Elements3/opt/Petalinux/2022.2
+sudo chown -R ckayhan:ckayhan /mnt/Elements3/opt/Petalinux/2022.2
+~/petalinux*.run -d /mnt/Elements3/opt/Petalinux/2022.2
+sudo chown -R root:xilinx /mnt/Elements3/opt/Petalinux
+sudo chmod -R 755 /mnt/Elements3/opt/Petalinux
+
 sudo mkdir -p /mnt/Toshiba1/Petalinux/2022.2
 sudo chown -R ckayhan:ckayhan /mnt/Toshiba1/Petalinux/2022.2
 ~/petalinux*.run -d /mnt/Toshiba1/Petalinux/2022.2
@@ -219,3 +233,21 @@ network:
       dhcp6: false
       critical: true
   version: 2
+
+# how to install google chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo gdebi google-chrome-stable_current_amd64.deb
+
+# "su" with error "X11 connection rejected because of wrong authentication"
+sudo xauth add $(xauth list | grep "unix$(echo $DISPLAY | cut -c10-12)")
+
+# copy vim config to root
+sudo cp -f ~/.vimrc /root/
+sudo cp -rf ~/.vim /root/
+
+# 
+sudo mkdir /GIT
+cd /GIT
+sudo chown -R ckayhan:git /GIT 
+mkdir ASEYE_FW
+sudo chmod -R 755 /GIT
